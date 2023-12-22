@@ -1,4 +1,5 @@
 <script>
+import PriceComponent from "./PriceComponent.vue";
 import Rating from "./Rating.vue";
 
 export default {
@@ -6,10 +7,12 @@ export default {
     data: Object,
   },
   components: {
+    PriceComponent,
     Rating,
   },
 };
 </script>
+
 <template>
   <div class="card mb-3" style="max-width: 540px">
     <div class="row no-gutters">
@@ -19,8 +22,9 @@ export default {
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title">{{ data.productName }}</h5>
-          <Rating :initalRating="data.rating" />
+          <Rating :initialRating="data.rating" />
           <p class="card-text">{{ data.description }}</p>
+          <PriceComponent :price="data.price" />
           <p class="card-text">
             <small class="text-muted">{{ data.releasedDate }}</small>
           </p>
