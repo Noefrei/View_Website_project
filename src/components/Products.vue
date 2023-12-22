@@ -2,7 +2,6 @@
   <div>
     <div v-for="product in products" :key="product.id">
       <Product :data="product" />
-      <PriceComponent />
     </div>
   </div>
 </template>
@@ -45,4 +44,3 @@ export default {
   },
 };
 </script>
-
