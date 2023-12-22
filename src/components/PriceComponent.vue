@@ -13,7 +13,7 @@ export default {
   },
   computed: {
     formattedPrice() {
-      return this.price.toFixed(2) + " Fr.";
+      return "Aktueller Preis: " + this.price.toFixed(2) + " Fr.";
     },
   },
 };
