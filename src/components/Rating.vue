@@ -1,22 +1,22 @@
 <template>
   <div>
-    <h1>Rating: {{ rating }}</h1>
+    <h1>Rating: {{ mainRating }}</h1>
     <div class="stars-container">
       <span
-        v-for="star in stars"
+        v-for="star in mainStars"
         :key="star"
-        @mouseover="hoverRating(star)"
-        @click="selectRating(star)"
-        @mouseleave="resetHoveredRating()"
+        @mouseover="hoverMainRating(star)"
+        @click="selectMainRating(star)"
+        @mouseleave="resetHoveredMainRating()"
       >
         <i
           class="bi"
-          :class="{ 'bi-star-fill': hoveredRating >= star, 'bi-star': hoveredRating < star }"
+          :class="{ 'bi-star-fill': hoveredMainRating >= star, 'bi-star': hoveredMainRating < star }"
         ></i>
       </span>
     </div>
-    <div class="rating-info" v-if="selectedRating !== null">
-      Durchschnittliche Bewertung: {{ calculateAverageRating().toFixed(1) }}/5
+    <div class="rating-info" v-if="selectedMainRating !== null">
+      Durchschnittliche Bewertung: {{ calculateMainAverageRating().toFixed(1) }}/5
     </div>
   </div>
 </template>
@@ -25,34 +25,34 @@
 export default {
   data() {
     return {
-      hoveredRating: null,
-      selectedRating: null,
-      totalRatings: 0,
-      totalRatingSum: 0,
+      hoveredMainRating: null,
+      selectedMainRating: null,
+      totalMainRatings: 0,
+      totalMainRatingSum: 0,
     };
   },
   methods: {
-    hoverRating(star) {
-      this.hoveredRating = star;
+    hoverMainRating(star) {
+      this.hoveredMainRating = star;
     },
-    selectRating(star) {
-      this.selectedRating = star;
-      this.totalRatingSum += star;
-      this.totalRatings++;
-      this.resetHoveredRating();
+    selectMainRating(star) {
+      this.selectedMainRating = star;
+      this.totalMainRatingSum += star;
+      this.totalMainRatings++;
+      this.resetHoveredMainRating();
     },
-    resetHoveredRating() {
-      this.hoveredRating = null;
+    resetHoveredMainRating() {
+      this.hoveredMainRating = null;
     },
-    calculateAverageRating() {
-      if (this.totalRatings === 0) {
+    calculateMainAverageRating() {
+      if (this.totalMainRatings === 0) {
         return 0;
       }
-      return this.totalRatingSum / this.totalRatings;
+      return this.totalMainRatingSum / this.totalMainRatings;
     },
   },
   computed: {
-    stars() {
+    mainStars() {
       return [1, 2, 3, 4, 5];
     },
   },

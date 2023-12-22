@@ -1,0 +1,47 @@
+[33mcommit 2ca3d218e9168e49da7877ffe7e5aff04ea26841[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Noe <noe.frei@bluewin.ch>
+Date:   Fri Dec 22 23:45:42 2023 +0100
+
+     Preis Komonente hinzugefügt
+
+[33mcommit dc61c95eaf5209c758d7db0f006d7b0834d164fa[m
+Author: Noe <noe.frei@bluewin.ch>
+Date:   Fri Dec 22 23:43:09 2023 +0100
+
+    hinzufügen von neuem Ordner mit bilder und dementsprechend anpassen in Products.vue
+
+[33mcommit cbb7352ebf8f0168aad5f33a4de9ba4224776f15[m
+Author: Noe <noe.frei@bluewin.ch>
+Date:   Fri Dec 22 21:49:25 2023 +0100
+
+    rating komponente mit sternen
+
+[33mcommit 54ae4244a189d92dbae15a40680f71ac762baaec[m
+Author: Noe <noe.frei@bluewin.ch>
+Date:   Fri Dec 22 21:47:45 2023 +0100
+
+    hinzufügen einer Products komponente
+
+[33mcommit 549a6ada6a3d741864005f723f415e7cb9457007[m
+Author: Noe <noe.frei@bluewin.ch>
+Date:   Fri Dec 22 21:44:49 2023 +0100
+
+    hinzufügen einer produkt komponente
+
+[33mcommit 832a8b0123ea04c09e5ac62481c3c8dba3ca37f1[m
+Author: Noe <noe.frei@bluewin.ch>
+Date:   Fri Dec 22 21:42:45 2023 +0100
+
+    löschen von unnötigen dateinen Tailwind css wurde nicht benötigt
+
+[33mcommit 1c8e48f5c185ee8d1a7fc2c00a18c8cd87874df8[m
+Author: Noe <noe.frei@bluewin.ch>
+Date:   Fri Dec 22 20:20:42 2023 +0100
+
+    original vue setup
+
+[33mcommit 99ee0bfdacf864f9cfb00130e146f650320d7603[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Noe <noe.frei@bluewin.ch>
+Date:   Fri Dec 22 20:15:40 2023 +0100
+
+    first commit
