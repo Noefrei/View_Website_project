@@ -52,8 +52,8 @@ export default {
 .card-img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Stellt sicher, dass das gesamte Bild in der Box zu sehen ist, ohne es zu verzerren */
+  object-fit: contain; 
 }
 
-/* Füge hier deine benutzerdefinierten Stile hinzu, wenn nötig */
+
 </style>

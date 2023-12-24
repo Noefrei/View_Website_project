@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <h1>Rating: {{ mainRating }}</h1>
@@ -20,7 +21,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -90,7 +90,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .rating {
   font-size: 24px;
@@ -98,23 +97,21 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-
 .stars-container {
   display: flex;
 }
-
 .stars-container span {
   cursor: pointer;
+  color: orange;
 }
-
 .rating-info {
   margin-top: 8px;
 }
-
 .amazon-rating {
   font-size: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 </style>

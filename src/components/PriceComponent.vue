@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      price: Math.floor(Math.random() * 301), // Zufälliger Preis zwischen 0 und 300 Fr.
+      price: Math.floor(Math.random() * 301), 
     };
   },
   computed: {
@@ -31,7 +31,7 @@ export default {
 <style scoped>
 .price-container {
   font-size: 16px;
-  color: #e47911; /* Beispiel für eine orangefarbene Preisfarbe */
+  color: #e47911; 
   font-weight: bold;
 }
 </style>
