@@ -1,23 +1,8 @@
-<script>
-import PriceComponent from "./PriceComponent.vue";
-import Rating from "./Rating.vue";
-
-export default {
-  props: {
-    data: Object,
-  },
-  components: {
-    PriceComponent,
-    Rating,
-  },
-};
-</script>
-
 <template>
-  <div class="card mb-3" style="max-width: 540px">
+  <div class="card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img :src="data.imageUrl" class="card-img" alt="..." />
+        <img :src="data.imageUrl" class="card-img" alt="Lego Figure" />
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -28,8 +13,47 @@ export default {
           <p class="card-text">
             <small class="text-muted">{{ data.releasedDate }}</small>
           </p>
+          <button @click="addToCart" class="btn btn-primary">Add to Cart</button>
+          <ShoppingCart :cart-items="cartItems" />
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import ShoppingCart from "./ShoppingCart.vue";
+import PriceComponent from "./PriceComponent.vue";
+import Rating from "./Rating.vue";
+
+export default {
+  components: {
+    ShoppingCart,
+    PriceComponent,
+    Rating,
+  },
+  props: {
+    data: Object,
+  },
+  data() {
+    return {
+      cartItems: [],
+    };
+  },
+  methods: {
+    addToCart() {
+      this.$emit("add-to-cart", this.data);
+    },
+  },
+};
+</script>
+
+<style scoped>
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Stellt sicher, dass das gesamte Bild in der Box zu sehen ist, ohne es zu verzerren */
+}
+
+/* Füge hier deine benutzerdefinierten Stile hinzu, wenn nötig */
+</style>
