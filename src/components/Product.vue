@@ -15,6 +15,9 @@
           </p>
           <button @click="addToCart" class="btn btn-primary">Add to Cart</button>
           <ShoppingCart :cart-items="cartItems" />
+
+          <!-- Integriere die RatingDistribution-Komponente hier -->
+          <RatingDistribution :ratings="data.ratings" />
         </div>
       </div>
     </div>
@@ -25,12 +28,14 @@
 import ShoppingCart from "./ShoppingCart.vue";
 import PriceComponent from "./PriceComponent.vue";
 import Rating from "./Rating.vue";
+import RatingDistribution from "./RatingDistribution.vue"; // Importiere die neue Komponente
 
 export default {
   components: {
     ShoppingCart,
     PriceComponent,
     Rating,
+    RatingDistribution, // Füge die neue Komponente zu den Imports hinzu
   },
   props: {
     data: Object,
@@ -54,6 +59,4 @@ export default {
   height: 100%;
   object-fit: contain; 
 }
-
-
 </style>

@@ -1,7 +1,9 @@
-
 <template>
   <div>
     <h1>Rating: {{ mainRating }}</h1>
+    <p v-if="totalMainRatings > 0">
+      Diese Objekt wurde {{ totalMainRatings }} mal bewertet.
+    </p>
     <div class="stars-container">
       <span
         v-for="star in mainStars"
@@ -21,6 +23,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -29,6 +32,7 @@ export default {
       selectedMainRating: null,
       totalMainRatings: 0,
       totalMainRatingSum: 0,
+      starClickCount: 0,
     };
   },
   methods: {
@@ -39,6 +43,17 @@ export default {
       this.selectedMainRating = star;
       this.totalMainRatingSum += star;
       this.totalMainRatings++;
+
+      // Zähler erhöhen
+      this.starClickCount++;
+
+      // Speichern im localStorage
+      localStorage.setItem('mainRating', JSON.stringify({
+        totalRatings: this.totalMainRatings,
+        totalRatingSum: this.totalMainRatingSum,
+        starClickCount: this.starClickCount,
+      }));
+
       this.resetHoveredMainRating();
     },
     resetHoveredMainRating() {
@@ -50,46 +65,40 @@ export default {
       }
       return this.totalMainRatingSum / this.totalMainRatings;
     },
+    loadStoredRating() {
+      // Laden aus dem localStorage
+      const storedRating = localStorage.getItem('mainRating');
+      if (storedRating) {
+        const { totalRatings, totalRatingSum, starClickCount } = JSON.parse(storedRating);
+        this.totalMainRatings = totalRatings;
+        this.totalMainRatingSum = totalRatingSum;
+        this.starClickCount = starClickCount;
+      }
+    },
   },
   computed: {
     mainStars() {
       return [1, 2, 3, 4, 5];
     },
-  },
-  components: {
-    AmazonRating: {
-      props: ['initialRating'],
-      data() {
-        return {
-          rating: this.initialRating,
-        };
-      },
-      methods: {
-        assignRating(newRating) {
-          this.rating = newRating;
-        },
-      },
-      template: `
-        <div class="amazon-rating">
-          <span
-            v-for="star in stars"
-            :key="star"
-            @click="assignRating(star)"
-          >
-            <i
-              class="bi"
-              :class="{ 'bi-star-fill': rating >= star, 'bi-star': rating < star }"
-            ></i>
-          </span>
-          <div class="rating-info" v-if="rating !== null">
-            Durchschnittliche Bewertung: {{ rating.toFixed(1) }}/5
-          </div>
-        </div>
-      `,
+    mainRating() {
+      return this.calculateMainAverageRating().toFixed(1);
     },
+  },
+  mounted() {
+    
+    this.loadStoredRating();
+  },
+  beforeDestroy() {
+    
+    localStorage.setItem('mainRating', JSON.stringify({
+      totalRatings: this.totalMainRatings,
+      totalRatingSum: this.totalMainRatingSum,
+      starClickCount: this.starClickCount,
+    }));
   },
 };
 </script>
+
 <style scoped>
 .rating {
   font-size: 24px;
@@ -97,21 +106,17 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+
 .stars-container {
   display: flex;
 }
+
 .stars-container span {
   cursor: pointer;
   color: orange;
 }
+
 .rating-info {
   margin-top: 8px;
-}
-.amazon-rating {
-  font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
 }
 </style>
