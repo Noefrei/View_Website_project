@@ -3,7 +3,7 @@
     <button @click="showRatingDistribution">Zeige Rating Verteilung</button>
 
     <div v-if="showDistribution">
-      <canvas ref="ratingChart" width="400" height="200"></canvas>
+      <canvas ref="ratingChart"></canvas>
       <table>
         <thead>
           <tr>
@@ -34,21 +34,13 @@ export default {
   },
   methods: {
     showRatingDistribution() {
-      // rating mit der Distribution tabelle verküpfen sodass anzahl rating mit den daten tabelle übereinstimmen!
-      
-      this.ratingCount = this.generateRandomRatingDistribution();
+      // Verwende die gespeicherten Daten für die Rating-Verteilung
+      this.ratingCount = this.$store.state.starClickCounts;
 
       this.showDistribution = true;
 
-     
+      // Rufe die Methode auf, um das Diagramm zu zeichnen
       this.drawRatingChart();
-    },
-    generateRandomRatingDistribution() {
-      const ratingCount = {};
-      for (let i = 1; i <= 5; i++) {
-        ratingCount[i] = Math.floor(Math.random() * 20) + 1;
-      }
-      return ratingCount;
     },
     drawRatingChart() {
       const ctx = this.$refs.ratingChart.getContext('2d');
@@ -97,7 +89,6 @@ export default {
 </script>
 
 <style scoped>
-
+/* Hier könntest du CSS-Stile für das Diagramm und die Tabelle hinzufügen */
 </style>
 
-  

@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <h1>Rating: {{ mainRating }}</h1>
@@ -23,7 +24,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -32,7 +32,7 @@ export default {
       selectedMainRating: null,
       totalMainRatings: 0,
       totalMainRatingSum: 0,
-      starClickCount: 0,
+      starClickCounts: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
     };
   },
   methods: {
@@ -43,17 +43,14 @@ export default {
       this.selectedMainRating = star;
       this.totalMainRatingSum += star;
       this.totalMainRatings++;
-
       // Zähler erhöhen
-      this.starClickCount++;
-
+      this.starClickCounts[star]++;
       // Speichern im localStorage
       localStorage.setItem('mainRating', JSON.stringify({
         totalRatings: this.totalMainRatings,
         totalRatingSum: this.totalMainRatingSum,
-        starClickCount: this.starClickCount,
+        starClickCounts: this.starClickCounts,
       }));
-
       this.resetHoveredMainRating();
     },
     resetHoveredMainRating() {
@@ -69,10 +66,10 @@ export default {
       // Laden aus dem localStorage
       const storedRating = localStorage.getItem('mainRating');
       if (storedRating) {
-        const { totalRatings, totalRatingSum, starClickCount } = JSON.parse(storedRating);
+        const { totalRatings, totalRatingSum, starClickCounts } = JSON.parse(storedRating);
         this.totalMainRatings = totalRatings;
         this.totalMainRatingSum = totalRatingSum;
-        this.starClickCount = starClickCount;
+        this.starClickCounts = starClickCounts;
       }
     },
   },
@@ -85,20 +82,17 @@ export default {
     },
   },
   mounted() {
-    
     this.loadStoredRating();
   },
   beforeDestroy() {
-    
     localStorage.setItem('mainRating', JSON.stringify({
       totalRatings: this.totalMainRatings,
       totalRatingSum: this.totalMainRatingSum,
-      starClickCount: this.starClickCount,
+      starClickCounts: this.starClickCounts,
     }));
   },
 };
 </script>
-
 <style scoped>
 .rating {
   font-size: 24px;
@@ -106,16 +100,13 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-
 .stars-container {
   display: flex;
 }
-
 .stars-container span {
   cursor: pointer;
   color: orange;
 }
-
 .rating-info {
   margin-top: 8px;
 }

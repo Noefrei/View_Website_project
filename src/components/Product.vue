@@ -16,8 +16,13 @@
           <button @click="addToCart" class="btn btn-primary">Add to Cart</button>
           <ShoppingCart :cart-items="cartItems" />
 
-          <!-- Integriere die RatingDistribution-Komponente hier -->
-          <RatingDistribution :ratings="data.ratings" />
+          <button @click="toggleRatingDistribution">
+            Zeige Ratingverteilung
+          </button>
+          <RatingDistribution
+            v-if="showRatingDistribution"
+            :ratings="data.ratings"
+          />
         </div>
       </div>
     </div>
@@ -28,14 +33,14 @@
 import ShoppingCart from "./ShoppingCart.vue";
 import PriceComponent from "./PriceComponent.vue";
 import Rating from "./Rating.vue";
-import RatingDistribution from "./RatingDistribution.vue"; // Importiere die neue Komponente
+import RatingDistribution from "./RatingDistribution.vue";
 
 export default {
   components: {
     ShoppingCart,
     PriceComponent,
     Rating,
-    RatingDistribution, // Füge die neue Komponente zu den Imports hinzu
+    RatingDistribution,
   },
   props: {
     data: Object,
@@ -43,11 +48,15 @@ export default {
   data() {
     return {
       cartItems: [],
+      showRatingDistribution: false,
     };
   },
   methods: {
     addToCart() {
       this.$emit("add-to-cart", this.data);
+    },
+    toggleRatingDistribution() {
+      this.showRatingDistribution = !this.showRatingDistribution;
     },
   },
 };
